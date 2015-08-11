@@ -40,6 +40,8 @@
 				<pathelement location="build/classes-test"/>
 			</classpath>
 			
+			<sysproperty key="java.library.path" value="build/dist/"/>
+			
 			<formatter type="plain"/>
 
 			<batchtest todir="build/testresults">
