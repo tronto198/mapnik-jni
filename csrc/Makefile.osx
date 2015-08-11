@@ -9,7 +9,8 @@ libmapnik-jni.jnilib: $(SOURCE_DEPENDS)
 		$(JAVA_CFLAGS) \
 		mapnikjni.cpp \
 		$(LDFLAGS) \
-		$(MAPNIK_LIBS) -framework JavaVM
+		$(JAVA_LDFLAGS) \
+		$(MAPNIK_LIBS)
 	
 clean:
 	rm libmapnik-jni.jnilib
