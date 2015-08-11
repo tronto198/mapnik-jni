@@ -7,14 +7,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef mapnik_Parameters_serialVersionUID
+#define mapnik_Parameters_serialVersionUID 362498820763181265LL
 #undef mapnik_Parameters_DEFAULT_INITIAL_CAPACITY
 #define mapnik_Parameters_DEFAULT_INITIAL_CAPACITY 16L
 #undef mapnik_Parameters_MAXIMUM_CAPACITY
 #define mapnik_Parameters_MAXIMUM_CAPACITY 1073741824L
 #undef mapnik_Parameters_DEFAULT_LOAD_FACTOR
 #define mapnik_Parameters_DEFAULT_LOAD_FACTOR 0.75f
-#undef mapnik_Parameters_serialVersionUID
-#define mapnik_Parameters_serialVersionUID 362498820763181265LL
+#undef mapnik_Parameters_TREEIFY_THRESHOLD
+#define mapnik_Parameters_TREEIFY_THRESHOLD 8L
+#undef mapnik_Parameters_UNTREEIFY_THRESHOLD
+#define mapnik_Parameters_UNTREEIFY_THRESHOLD 6L
+#undef mapnik_Parameters_MIN_TREEIFY_CAPACITY
+#define mapnik_Parameters_MIN_TREEIFY_CAPACITY 64L
 /*
  * Class:     mapnik_Parameters
  * Method:    setNativeInt
@@ -50,13 +56,6 @@ JNIEXPORT void JNICALL Java_mapnik_Parameters_setNativeDouble
 #ifdef __cplusplus
 extern "C" {
 #endif
-/* Inaccessible static: initialized */
-/* Inaccessible static: registered */
-/* Inaccessible static: loadedLibrary */
-/* Inaccessible static: librarySearchNames */
-/* Inaccessible static: librarySearchPath */
-/* Inaccessible static: initializationFailure */
-/* Inaccessible static: nativeAllocCounts */
 /*
  * Class:     mapnik_Mapnik
  * Method:    nativeInit
