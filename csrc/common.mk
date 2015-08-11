@@ -1,6 +1,7 @@
 JAVA_CMD ?= java
 CFLAGS ?= 
 JAVA_CFLAGS ?= $(shell $(JAVA_CMD) -jar java-config.jar --cflags)
+JAVA_LDFLAGS ?= $(shell $(JAVA_CMD) -jar java-config.jar --ldflags)
 MAPNIK_CFLAGS = $(shell mapnik-config --cflags)
 FONTS_DIR = $(shell mapnik-config --fonts)
 INPUT_PLUGINS_DIR = $(shell mapnik-config --input-plugins)
