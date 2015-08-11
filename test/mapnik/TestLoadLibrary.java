@@ -13,14 +13,8 @@ import static org.junit.Assert.*;
  */
 public class TestLoadLibrary {
 	@Test
-	public void testStaticSettings() {
-		System.err.println("Search path=" + Arrays.toString(Mapnik.getLibrarySearchPath().toArray()));
-		String expected=new File("build/dist").getAbsolutePath();
-		assertEquals("Jar relative search path (will only succeed if testing from jar)", 
-				expected, Mapnik.getLibrarySearchPath().get(0));
-		
+	public void testInitialize() {
 		Mapnik.initialize();
-		assertEquals(new File(expected, System.mapLibraryName("mapnik-jni")).toString(), Mapnik.getLoadedLibrary());
 	}
 	
 	@Test
