@@ -5,9 +5,9 @@
 	<target name="compile">
 		<mkdir dir="build/classes"/>
 		<mkdir dir="csrc"/>
-		<javac srcdir="src" destdir="build/classes" debug="on" source="1.5" target="1.5" includeantruntime="false"/>
+		<javac srcdir="src" destdir="build/classes" debug="on" source="1.6" target="1.6" includeantruntime="false"/>
 		<mkdir dir="build/classes-tools"/>
-		<javac srcdir="tools" destdir="build/classes-tools" debug="on" source="1.5" target="1.5" includeantruntime="false">
+		<javac srcdir="tools" destdir="build/classes-tools" debug="on" source="1.6" target="1.6" includeantruntime="false">
 			<classpath>
 				<pathelement location="build/classes"/>
 			</classpath>
@@ -26,7 +26,7 @@
 	<target name="test" depends="jar,native">
 		<mkdir dir="build/classes-test"/>
 		<mkdir dir="build/testresults"/>
-		<javac srcdir="test" destdir="build/classes-test" debug="on" source="1.5" target="1.5" includeantruntime="false">
+		<javac srcdir="test" destdir="build/classes-test" debug="on" source="1.6" target="1.6" includeantruntime="false">
 			<classpath>
 				<pathelement location="${junit.jar}"/>
 				<pathelement location="build/dist/mapnik-jni.jar"/>
@@ -63,7 +63,7 @@
 			access="public"
 			encoding="UTF-8"
 			windowtitle="mapnik-jni API documentation"
-			source="1.5"
+			source="1.6"
 		/>
 	</target>
 	
