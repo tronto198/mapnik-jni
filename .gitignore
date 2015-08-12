@@ -6,3 +6,9 @@ pages/
 *.jnilib
 *~
 
+mapnik-jni/Release
+mapnik-jni/Debug
+*.suo
+*.sdf
+*.opensdf
+*.ipch
