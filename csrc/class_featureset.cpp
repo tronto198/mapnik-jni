@@ -171,7 +171,7 @@ jobject operator()(value_integer value) const {
 	}
 
 	jobject operator()(icu::UnicodeString const& value) const {
-		return env->NewString(value.getBuffer(), value.length());
+		return env->NewString(reinterpret_cast<const jchar*>(value.getBuffer()), value.length());
 	}
 
 	jobject operator()(mapnik::value_null const& value) const {
