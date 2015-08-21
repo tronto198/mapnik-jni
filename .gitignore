@@ -6,8 +6,7 @@ pages/
 *.jnilib
 *~
 
-mapnik-jni/Release
-mapnik-jni/Debug
+mapnik-jni/x64
 *.suo
 *.sdf
 *.opensdf
