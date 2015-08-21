@@ -40,7 +40,7 @@ JNIEXPORT jobject JNICALL Java_mapnik_FeatureTypeStyle_collectAttributes
 
 	std::set<std::string> attrs;
 	mapnik::attribute_collector collector(attrs);
-	BOOST_FOREACH(mapnik::rule const& r, rules) {
+	for (mapnik::rule const& r : rules) {
 		collector(r);
 	}
 

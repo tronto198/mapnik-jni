@@ -7,7 +7,7 @@ JNIEXPORT jlong JNICALL Java_mapnik_Image_alloc__II
   (JNIEnv *env, jclass c, jint width, jint height)
 {
 	PREAMBLE;
-	mapnik::image_32* im=new mapnik::image_32(width, height);
+	mapnik::image_rgba8* im=new mapnik::image_rgba8(width, height);
 	return FROM_POINTER(im);
 	TRAILER(0);
 }
@@ -25,9 +25,9 @@ JNIEXPORT jlong JNICALL Java_mapnik_Image_alloc__Lmapnik_Image_2
 		throw_runtime_exception(env, "Image cannot be null in call to constructor");
 		return 0;
 	}
-	mapnik::image_32* other=LOAD_IMAGE_POINTER(iobjother);
+	mapnik::image_rgba8* other=LOAD_IMAGE_POINTER(iobjother);
 
-	mapnik::image_32* im=new mapnik::image_32(*other);
+	mapnik::image_rgba8* im=new mapnik::image_rgba8(*other);
 	return FROM_POINTER(im);
 
 	TRAILER(0);
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_mapnik_Image_dealloc
   (JNIEnv * env, jobject, jlong ptr)
 {
 	PREAMBLE;
-	mapnik::image_32* im=static_cast<mapnik::image_32*>(TO_POINTER(ptr));
+	mapnik::image_rgba8* im=static_cast<mapnik::image_rgba8*>(TO_POINTER(ptr));
 	if (im) {
 		delete im;
 	}
@@ -58,7 +58,7 @@ JNIEXPORT jint JNICALL Java_mapnik_Image_getWidth
   (JNIEnv *env, jobject imobj)
 {
 	PREAMBLE;
-	mapnik::image_32* im=LOAD_IMAGE_POINTER(imobj);
+	mapnik::image_rgba8* im=LOAD_IMAGE_POINTER(imobj);
 	return im->width();
 	TRAILER(0);
 }
@@ -72,7 +72,7 @@ JNIEXPORT jint JNICALL Java_mapnik_Image_getHeight
 (JNIEnv *env, jobject imobj)
 {
 	PREAMBLE;
-	mapnik::image_32* im=LOAD_IMAGE_POINTER(imobj);
+	mapnik::image_rgba8* im=LOAD_IMAGE_POINTER(imobj);
 	return im->height();
 	TRAILER(0);
 }
@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_mapnik_Image_saveToFile
   (JNIEnv *env, jobject imobj, jstring filenamej, jstring typej)
 {
 	PREAMBLE;
-	mapnik::image_32* im=LOAD_IMAGE_POINTER(imobj);
+	mapnik::image_rgba8* im=LOAD_IMAGE_POINTER(imobj);
 	refjavastring filename(env, filenamej);
 	refjavastring type(env, typej);
 
@@ -103,7 +103,7 @@ JNIEXPORT jbyteArray JNICALL Java_mapnik_Image_saveToMemory
   (JNIEnv *env, jobject imobj, jstring typej)
 {
 	PREAMBLE;
-	mapnik::image_32* im=LOAD_IMAGE_POINTER(imobj);
+	mapnik::image_rgba8* im=LOAD_IMAGE_POINTER(imobj);
 	refjavastring type(env, typej);
 
 	std::string datastring=mapnik::save_to_string(*im, type.stringz);

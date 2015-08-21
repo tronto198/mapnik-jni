@@ -57,10 +57,12 @@ JNIEXPORT jobjectArray JNICALL Java_mapnik_FeatureSet__1loadGeometries
 		return 0;
 	}
 
-	unsigned count=(*fp)->num_geometries();
+	// Mapnik 3.x only holds one geometry<> per feature_impl.
+	// (In Mapnik 2.x this used to be a variable-length vector of geometries.)
+	unsigned count=1;
 	jobjectArray ret=env->NewObjectArray(count, CLASS_GEOMETRY, (jobject)0);
 	for (unsigned index=0; index<count; index++) {
-		mapnik::geometry_type &g((*fp)->get_geometry(index));
+		mapnik::geometry::geometry<double> const &g((*fp)->get_geometry());
 		jobject gobject=env->NewObject(CLASS_GEOMETRY, CTOR_NATIVEOBJECT);
 		env->SetLongField(gobject, FIELD_PTR, FROM_POINTER(&g));
 		env->SetObjectArrayElement(ret, index, gobject);
@@ -128,20 +130,13 @@ JNIEXPORT jobject JNICALL Java_mapnik_FeatureSet_getPropertyNames
 	mapnik::feature_impl::iterator end = (*fp)->end();
 	for ( ;itr!=end; ++itr)
 	{
-		std::string const& name(boost::get<0>(*itr));
+		std::string const& name(std::get<0>(*itr));
 		env->CallBooleanMethod(ret, METHOD_HASHSET_ADD, env->NewStringUTF(name.c_str()));
 	}
 
 	return ret;
 	TRAILER(0);
 }
-
-// http://en.wikipedia.org/wiki/Java_Native_Interface#Mapping_types
-#if MAPNIK_VERSION >= 200200
-	typedef mapnik::value_integer value_integer;
-#else
-	typedef int value_integer;
-#endif
 
 class value_to_java: public boost::static_visitor<jobject> {
 	JNIEnv* env;
@@ -150,7 +145,7 @@ public:
 	}
 
 
-jobject operator()(value_integer value) const {
+jobject operator()(mapnik::value_integer value) const {
 #ifdef BIGINT
 		return env->CallStaticObjectMethod(CLASS_LONG, METHOD_LONG_VALUEOF, value);
 #else
@@ -158,11 +153,11 @@ jobject operator()(value_integer value) const {
 #endif
 	}
 
-	jobject operator()(bool value) const {
+	jobject operator()(mapnik::value_bool value) const {
 		return env->CallStaticObjectMethod(CLASS_BOOLEAN, METHOD_BOOLEAN_VALUEOF, value);
 	}
 
-	jobject operator()(double value) const {
+	jobject operator()(mapnik::value_double value) const {
 		return env->CallStaticObjectMethod(CLASS_DOUBLE, METHOD_DOUBLE_VALUEOF, value);
 	}
 
@@ -170,7 +165,7 @@ jobject operator()(value_integer value) const {
 		return env->NewStringUTF(value.c_str());
 	}
 
-	jobject operator()(icu::UnicodeString const& value) const {
+	jobject operator()(mapnik::value_unicode_string const& value) const {
 		return env->NewString(reinterpret_cast<const jchar*>(value.getBuffer()), value.length());
 	}
 
@@ -198,7 +193,7 @@ JNIEXPORT jobject JNICALL Java_mapnik_FeatureSet_getProperty
 
 	// Convert the value
 	mapnik::value_type const& value= (*fp)->get(name.stringz);
-	return boost::apply_visitor(value_to_java(env), value.base());
+	return mapnik::value_type::visit(value, value_to_java(env));
 	TRAILER(0);
 }
 
