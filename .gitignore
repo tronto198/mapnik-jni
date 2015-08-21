@@ -6,6 +6,10 @@ pages/
 *.jnilib
 *~
 
+# OS X clutter
+.DS_Store
+
+# Visual C++ clutter
 mapnik-jni/x64
 *.suo
 *.sdf
