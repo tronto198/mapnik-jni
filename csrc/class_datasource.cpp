@@ -32,7 +32,30 @@ JNIEXPORT jobject JNICALL Java_mapnik_Datasource_getParameters
 
 	for (mapnik::param_map::const_iterator iter=params.begin(); iter!=params.end(); iter++) {
 		jstring key=env->NewStringUTF(iter->first.c_str());
-		boost::apply_visitor(translate_parameter_visitor(env, paramobject, key), iter->second);
+		translate_parameter_visitor visitor(env, paramobject, key);
+		// TODO - The call to visit() does not compile on MSVC 2015 (error C2783).
+		// The compiler cannot deduce the __formal type(?) in:
+		// const T &mapnik::util::variant<mapnik::value_null,
+		//                                mapnik::value_integer,
+		//                                mapnik::value_double,
+		//                                std::string,
+		//                                mapnik::value_bool>::get(void) const
+		// (ditto for the non-const version)
+		// mapnik::value_type::visit(iter->second, visitor);
+		// So, the variant<> types are temporarily unrolled here...
+		if (iter->second.is<mapnik::value_integer>()) {
+			visitor(iter->second.get<mapnik::value_integer>());
+		}
+		else if (iter->second.is<mapnik::value_double>()) {
+			visitor(iter->second.get<mapnik::value_double>());
+		}
+		else if (iter->second.is<std::string>()) {
+			visitor(iter->second.get<std::string>());
+		}
+		else if (iter->second.is<mapnik::value_bool>()) {
+			visitor(iter->second.get<mapnik::value_bool>());
+		}
+		// else: value_null or unexpected value - ignore
 	}
 
 	return paramobject;

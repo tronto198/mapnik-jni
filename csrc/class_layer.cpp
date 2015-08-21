@@ -149,7 +149,7 @@ JNIEXPORT jdouble JNICALL Java_mapnik_Layer_getMinZoom
 {
 	PREAMBLE;
 	mapnik::layer* layer=LOAD_LAYER_POINTER(layerobj);
-	return layer->min_zoom();
+	return layer->minimum_scale_denominator();
 	TRAILER(0);
 }
 
@@ -163,7 +163,7 @@ JNIEXPORT void JNICALL Java_mapnik_Layer_setMinZoom
 {
 	PREAMBLE;
 	mapnik::layer* layer=LOAD_LAYER_POINTER(layerobj);
-	layer->set_min_zoom(z);
+	layer->set_minimum_scale_denominator(z);
 	TRAILER_VOID;
 }
 
@@ -177,7 +177,7 @@ JNIEXPORT jdouble JNICALL Java_mapnik_Layer_getMaxZoom
 {
 	PREAMBLE;
 	mapnik::layer* layer=LOAD_LAYER_POINTER(layerobj);
-	return layer->max_zoom();
+	return layer->maximum_scale_denominator();
 	TRAILER(0);
 }
 
@@ -191,7 +191,7 @@ JNIEXPORT void JNICALL Java_mapnik_Layer_setMaxZoom
 {
 	PREAMBLE;
 	mapnik::layer* layer=LOAD_LAYER_POINTER(layerobj);
-	layer->set_max_zoom(z);
+	layer->set_maximum_scale_denominator(z);
 	TRAILER_VOID;
 }
 

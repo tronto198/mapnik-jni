@@ -112,8 +112,8 @@ inline static long ASSERT_LONG_POINTER(long ptr) {
 #define LOAD_QUERY_POINTER(object) (static_cast<mapnik::query*>(LOAD_OBJECT_POINTER(object)))
 #define LOAD_FEATURESET_POINTER(object) (static_cast<mapnik::featureset_ptr*>(LOAD_OBJECT_POINTER(object)))
 #define LOAD_FEATURE_POINTER(object) (static_cast<mapnik::feature_ptr*>(TO_POINTER(env->GetLongField(object, FIELD_FEATURESET_FEATURE_PTR))))
-#define LOAD_GEOMETRY_POINTER(object) (static_cast<mapnik::geometry_type*>(LOAD_OBJECT_POINTER(object)))
-#define LOAD_IMAGE_POINTER(object) (static_cast<mapnik::image_32*>(LOAD_OBJECT_POINTER(object)))
+#define LOAD_GEOMETRY_POINTER(object) (static_cast<mapnik::geometry::geometry<double>*>(LOAD_OBJECT_POINTER(object)))
+#define LOAD_IMAGE_POINTER(object) (static_cast<mapnik::image_rgba8*>(LOAD_OBJECT_POINTER(object)))
 
 static void init_class(JNIEnv* env, const char* name, jclass& classref) {
 	classref=(jclass)env->NewGlobalRef(env->FindClass(name));

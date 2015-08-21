@@ -5,12 +5,6 @@ static void translate_to_mapnik_parameters(JNIEnv *env, jobject javaparams, mapn
 	env->CallVoidMethod(javaparams, METHOD_PARAMETERS_COPY_TO_NATIVE, (jlong)(&mapnikparams));
 }
 
-#if MAPNIK_VERSION >= 200200
-	typedef mapnik::value_integer value_integer;
-#else
-	typedef int value_integer;
-#endif
-
 class translate_parameter_visitor: public boost::static_visitor<>
 {
 	JNIEnv *env;
@@ -20,7 +14,7 @@ public:
 	translate_parameter_visitor(JNIEnv* aenv, jobject aparamobject, jstring akey): env(aenv), paramobject(aparamobject), key(akey) {
 	}
 
-	void operator()(value_integer value) const {
+	void operator()(mapnik::value_integer value) const {
 #ifdef BIGINT
 		env->CallVoidMethod(paramobject, METHOD_PARAMETERS_SET_LONG, key, (jlong)value);
 #else
@@ -28,11 +22,11 @@ public:
 #endif
 	}
 
-	void operator()(bool value) const {
+	void operator()(mapnik::value_bool value) const {
 		env->CallVoidMethod(paramobject, METHOD_PARAMETERS_SET_BOOLEAN, key, (jboolean)value);
 	}
 
-	void operator()(double value) const {
+	void operator()(mapnik::value_double value) const {
 		env->CallVoidMethod(paramobject, METHOD_PARAMETERS_SET_DOUBLE, key, (jdouble)value);
 	}
 
@@ -59,7 +53,7 @@ JNIEXPORT void JNICALL Java_mapnik_Parameters_setNativeInt
 	PREAMBLE;
 	refjavastring name(env, namej);
 	mapnik::parameters *params=(mapnik::parameters*)(ptr);
-	(*params)[name.stringz]=static_cast<value_integer>(value);
+	(*params)[name.stringz]=static_cast<mapnik::value_integer>(value);
 	TRAILER_VOID;
 }
 

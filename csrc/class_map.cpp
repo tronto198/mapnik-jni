@@ -160,7 +160,7 @@ JNIEXPORT void JNICALL Java_mapnik_MapDefinition_removeLayer
 {
 	PREAMBLE;
 	mapnik::Map* map=LOAD_MAP_POINTER(mapobject);
-	map->removeLayer(index);
+	map->remove_layer(index);
 	TRAILER_VOID;
 }
 
@@ -179,7 +179,7 @@ JNIEXPORT void JNICALL Java_mapnik_MapDefinition_addLayer
 	mapnik::layer* layer=
 			static_cast<mapnik::layer*>(TO_POINTER(env->GetLongField(layerobject, FIELD_PTR)));
 
-	map->addLayer(*layer);
+	map->add_layer(*layer);
 	TRAILER_VOID;
 }
 
