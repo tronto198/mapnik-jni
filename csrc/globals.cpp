@@ -90,7 +90,7 @@ void throw_java_exception(JNIEnv* env, std::exception& e) {
 #define TO_POINTER(ptr) ((void*)ptr)
 #define FROM_POINTER(ptr) ((jlong)ptr)
 
-inline static long ASSERT_LONG_POINTER(long ptr) {
+inline static jlong ASSERT_LONG_POINTER(jlong ptr) {
 	if (!ptr) {
 		throw std::runtime_error("Object is no longer valid");
 	}
