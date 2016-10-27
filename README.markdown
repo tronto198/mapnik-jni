@@ -1,7 +1,7 @@
 mapnik-jni
 ==========
 
-Bindings to use Mapnik from Java.  This binding tries to strike the 80-20 rule by providing access to the most used parts of Mapnik.  This binding isusable for programatically building/introspecting a map, enumerating features and rendering with AGG.
+Bindings to use Mapnik from Java.  This binding tries to strike the 80-20 rule by providing access to the most used parts of Mapnik.  mapnik-jni is usable for programatically building/introspecting a map, enumerating features and rendering with AGG.
 
 This repository was forked from [springmeyer/mapnik-jni](https://github.com/springmeyer/mapnik-jni), which seems to be defunct, just like the original [SpatialInteractive/mapnik-jni](https://github.com/SpatialInteractive/mapnik-jni). I have explained some changes that I made in [this Pull Request](https://github.com/springmeyer/mapnik-jni/pull/9).
 
@@ -20,7 +20,7 @@ Links
 
 * [JavaDocs](http://spatialinteractive.github.com/mapnik-jni/javadocs/index.html)
 * [NanoMaps Server](https://github.com/SpatialInteractive/nanomaps-server) A tile server.  One of the first things written with the Java bindings.
-* [Mapnik Distiller](https://github.com/SpatialInteractive/mapnik-distiller) Map data optimizer.  Another bit that written with the Java bindings.
+* [Mapnik Distiller](https://github.com/SpatialInteractive/mapnik-distiller) Map data optimizer.  Another bit written with the Java bindings.
 
 Building
 --------
@@ -41,6 +41,7 @@ If you have coded with the C++ API or the Python bindings, the Java API should f
 
 Here is some sample code:
 
+```java
 	import mapnik.*;
 	
 	// You must call initialize once.
@@ -61,7 +62,7 @@ Here is some sample code:
 	byte[] contents = image.saveToMemory("png");
 	image.dispose();
 	m.dispose();
-
+```end
 
 Memory Management
 -----------------
