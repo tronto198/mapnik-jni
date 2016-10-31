@@ -5,7 +5,7 @@ Bindings to use Mapnik from Java.  This binding tries to strike the 80-20 rule b
 
 This repository was forked from [springmeyer/mapnik-jni](https://github.com/springmeyer/mapnik-jni), which seems to be defunct, just like the original [SpatialInteractive/mapnik-jni](https://github.com/SpatialInteractive/mapnik-jni). I have explained some changes that I made in [this Pull Request](https://github.com/springmeyer/mapnik-jni/pull/9).
 
-Feel free to send Pull Requests.  I will maintain this library as long as my client is planning to use it in production.
+Feel free to send patches.  I will maintain this library as long as my client is planning to use it in production.
 
 Prerequisites
 -------------
@@ -62,7 +62,7 @@ Here is some sample code:
 	byte[] contents = image.saveToMemory("png");
 	image.dispose();
 	m.dispose();
-```end
+```
 
 Memory Management
 -----------------
