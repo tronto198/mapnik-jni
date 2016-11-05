@@ -5,7 +5,7 @@ package mapnik;
  * @author stella
  *
  */
-public abstract class NativeObject {
+public abstract class NativeObject implements AutoCloseable {
 	/**
 	 * Native pointer.  Depending on the type, this will either be a pointer
 	 * directly to the object or a smart pointer.
@@ -20,13 +20,22 @@ public abstract class NativeObject {
 	 * Manually disposes of the native resources associated with this
 	 * object (versus waiting for finalization).
 	 */
-	public final void dispose() {
+	public final void close() {
 		if (ptr!=0) {
 			long ptrLocal=ptr;
 			ptr=0;
 			dealloc(ptrLocal);
 			Mapnik.incrementAlloc(getClass(), -1);
 		}
+	}
+
+	/*
+	 * @deprecated
+	 * Implementation moved to close() for try-with-resources compatibility
+	 */
+	@Deprecated
+	public final void dispose() {
+		close();
 	}
 	
 	/**
@@ -39,7 +48,7 @@ public abstract class NativeObject {
 	@Override
 	protected final void finalize() throws Throwable {
 		super.finalize();
-		dispose();
+		close();
 	}
 	
 	/**

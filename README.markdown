@@ -49,19 +49,19 @@ Here is some sample code:
 	Mapnik.initialize();
 	
 	Box2d bounds = new Box2d(-180, -90, 180, 90);
-	MapDefinition m = new MapDefinition();
-
-	m.loadMap("mymapfile.xml", false);
-	m.setSrs(Projection.LATLNG_PARAMS);
-	m.resize(512, 512);
-	m.zoomToBox(bounds);
-	
-	Image image = new Image(512, 512);
-	Renderer.renderAgg(m, image);
-	
-	byte[] contents = image.saveToMemory("png");
-	image.dispose();
-	m.dispose();
+	try (
+		MapDefinition m = new MapDefinition();
+		Image image = new Image(512, 512)
+	) {
+		m.loadMap("mymapfile.xml", false);
+		m.setSrs(Projection.LATLNG_PARAMS);
+		m.resize(512, 512);
+		m.zoomToBox(bounds);
+		
+		Renderer.renderAgg(m, image);
+		
+		byte[] contents = image.saveToMemory("png");
+	}
 ```
 
 Memory Management
