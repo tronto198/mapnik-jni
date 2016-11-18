@@ -12,7 +12,7 @@ import java.util.List;
 public class LayerDescriptor {
 	private String name;
 	private String encoding;
-	private ArrayList<AttributeDescriptor> descriptors=new ArrayList<AttributeDescriptor>();
+	private ArrayList<AttributeDescriptor> descriptors=new ArrayList<>();
 	
 	public String getName() {
 		return name;

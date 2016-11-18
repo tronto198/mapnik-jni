@@ -39,9 +39,7 @@ public class Projection extends NativeObject {
 	
 	@Override
 	public boolean equals(Object other) {
-		if (other==null) return false;
-		if (!(other instanceof Projection)) return false;
-		return ((Projection)other).getParams().equals(getParams());
+		return (other instanceof Projection) && ((Projection) other).getParams().equals(getParams());
 	}
 
 	/***

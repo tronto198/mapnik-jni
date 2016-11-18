@@ -29,7 +29,7 @@ public abstract class NativeObject implements AutoCloseable {
 		}
 	}
 
-	/*
+	/**
 	 * @deprecated
 	 * Implementation moved to close() for try-with-resources compatibility
 	 */

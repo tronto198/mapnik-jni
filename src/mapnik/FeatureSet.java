@@ -39,8 +39,8 @@ public class FeatureSet extends NativeObject {
 	
 	private void disposeGeometries() {
 		if (feature_geometries!=null) {
-			for (int i=0; i<feature_geometries.length; i++) {
-				feature_geometries[i].dispose();
+			for (Geometry feature_geometry : feature_geometries) {
+				feature_geometry.close();
 			}
 			feature_geometries=null;
 		}

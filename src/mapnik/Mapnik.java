@@ -1,12 +1,8 @@
 package mapnik;
 
-import java.io.File;
-import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 
 /**
  * Global management of the Mapnik installation
@@ -18,9 +14,9 @@ public class Mapnik {
 	private static boolean registered;
 	private static boolean initializationFailure;
 	
-	private static Map<Class<? extends NativeObject>, AtomicInteger> nativeAllocCounts;
+	private static final Map<Class<? extends NativeObject>, AtomicInteger> nativeAllocCounts;
 	static {
-		nativeAllocCounts=new HashMap<Class<? extends NativeObject>, AtomicInteger>();
+		nativeAllocCounts = new HashMap<>();
 		nativeAllocCounts.put(Datasource.class, new AtomicInteger());
 		nativeAllocCounts.put(FeatureSet.class, new AtomicInteger());
 		nativeAllocCounts.put(FeatureTypeStyle.class, new AtomicInteger());
@@ -40,7 +36,7 @@ public class Mapnik {
 	 * @return Map of object type to count for all counts greater than zero
 	 */
 	public static Map<String,Integer> getNativeAllocations() {
-		Map<String, Integer> ret=new HashMap<String, Integer>();
+		Map<String, Integer> ret= new HashMap<>();
 		for (Map.Entry<Class<? extends NativeObject>, AtomicInteger> entry: nativeAllocCounts.entrySet()) {
 			int count=entry.getValue().get();
 			if (count==0) continue;
