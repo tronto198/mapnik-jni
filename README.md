@@ -1,11 +1,11 @@
 mapnik-jni
 ==========
 
-Bindings to use Mapnik from Java.  This binding tries to strike the 80-20 rule by providing access to the most used parts of Mapnik.  mapnik-jni is usable for programatically building/introspecting a map, enumerating features and rendering with AGG.
+Bindings to use Mapnik from Java.  Supports programatically building/introspecting a map, enumerating features and rendering with AGG.
 
-This repository was forked from [springmeyer/mapnik-jni](https://github.com/springmeyer/mapnik-jni), which seems to be defunct, just like the original [SpatialInteractive/mapnik-jni](https://github.com/SpatialInteractive/mapnik-jni). I have explained some changes that I made in [this Pull Request](https://github.com/springmeyer/mapnik-jni/pull/9).
+This repository was forked from [springmeyer/mapnik-jni](https://github.com/springmeyer/mapnik-jni), which seems to be defunct, just like the original [SpatialInteractive/mapnik-jni](https://github.com/SpatialInteractive/mapnik-jni). I have explained some changes that I made in [this pull request](https://github.com/springmeyer/mapnik-jni/pull/9).
 
-Feel free to send patches.  I will maintain this library as long as my client is planning to use it in production.
+**I have no use for mapnik-jni anymore. I might still accept simple pull requests, but if you need more than that, please fork this project and let me know – I will then shut down this fork.**
 
 Prerequisites
 -------------
