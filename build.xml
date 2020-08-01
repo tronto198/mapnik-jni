@@ -9,7 +9,7 @@
 	</target>
 	
 	<target name="headers" depends="compile">
-		<javah class="mapnik.Parameters,mapnik.Mapnik,mapnik.MapDefinition,mapnik.Layer,mapnik.FeatureTypeStyle,mapnik.Datasource,mapnik.DatasourceCache,mapnik.Projection,mapnik.Query,mapnik.FeatureSet,mapnik.Geometry,mapnik.Image,mapnik.Renderer,mapnik.FreetypeEngine" outputfile="csrc/mapnikjni.h" classpath="build/classes"/>
+		<javac srcdir="src" destdir="build/classes" nativeHeaderDir="csrc" classpath="build/classes"/>
 	</target>
 	
 	<target name="jar" depends="compile">

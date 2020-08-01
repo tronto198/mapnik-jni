@@ -5,13 +5,13 @@ Bindings to use Mapnik from Java.  Supports programatically building/introspecti
 
 This repository was forked from [springmeyer/mapnik-jni](https://github.com/springmeyer/mapnik-jni), which seems to be defunct, just like the original [SpatialInteractive/mapnik-jni](https://github.com/SpatialInteractive/mapnik-jni). I have explained some changes that I made in [this pull request](https://github.com/springmeyer/mapnik-jni/pull/9).
 
-**I have no use for mapnik-jni anymore. I might still accept simple pull requests, but if you need more than that, please fork this project and let me know – I will then shut down this fork.**
+**JDK 8~ 로 수정**
 
 Prerequisites
 -------------
 
 * Mapnik 3.x (aka mapnik trunk)
-* JDK 6 ≤ x ≤ 8
+* JDK ≥ 8
 * Ant ≥ 1.7
 * On Windows, a Mapnik 3 SDK built using [these tools](https://github.com/mapbox/windows-builds)
 
@@ -24,11 +24,13 @@ Links
 
 Building
 --------
-
+* sudo apt-get install libmapnik-dev
 * Make sure that the mapnik-config program is on your path and is the one you want to be linking against
 * In the mapnik-jni directory, run "ant test"
 * Your jar and shared library are in the build/dist directory.  Copy them to your project.  If the shared library is found in the same directory as the jar, then that is used with no further configuration.  Otherwise, the java.library.path and system default locations are searched depending on how you have your JVM setup.
 * On Windows: Be sure to adjust the header/library paths in the Visual C++ project to match your current JDK.
+
+* 만약 jni.h 파일을 찾지 못하면 jre와 jdk 버전을 같게 설정
 
 Quick Start
 -----------
